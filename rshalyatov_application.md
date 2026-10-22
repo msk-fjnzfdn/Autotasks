@@ -1,10 +1,8 @@
-Шалятов Роман - "Autotasks" 
+# Шалятов Роман - "Autotasks" 
 
-Группа: 10 - И - 1 
-
-Электронная почта: fj.apple.manga@gmail.com 
-
-Tg: fjnzfdn 
+### Группа: 10 - И - 1 
+### Электронная почта: fj.apple.manga@gmail.com 
+### Tg: fjnzfdn 
 
 ### НАЗВАНИЕ ПРОЕКТА 
 

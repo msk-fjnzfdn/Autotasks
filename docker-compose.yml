@@ -1,0 +1,51 @@
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: autotasks_user
+      POSTGRES_PASSWORD: autotasks_pass
+      POSTGRES_DB: autotasks_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - autotasks-net
+    ports:
+      - "5433:5432"
+
+  backend:
+    build: ./backend
+    env_file: .env.example
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    environment:
+      DATABASE_URL: postgresql+asyncpg://autotasks_user:autotasks_pass@db:5432/autotasks_db
+      SECRET_KEY: change-me-in-prod
+      ALGORITHM: HS256
+    depends_on:
+      - db
+    restart: unless-stopped
+    networks:
+      - autotasks-net
+    volumes:
+      - ./backend/app:/app/app
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./frontend
+    command: npm run dev
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - autotasks-net
+    volumes:
+      - ./frontend/src:/app/src
+
+networks:
+  autotasks-net:
+    driver: bridge
+
+volumes:
+  pgdata:

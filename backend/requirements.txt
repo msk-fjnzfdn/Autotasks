@@ -1,0 +1,15 @@
+fastapi==0.115.0
+uvicorn[standard]==0.35.0
+sqlalchemy==2.0.31
+asyncpg==0.31.0
+alembic==1.13.3
+pydantic==2.9.2
+pydantic-settings==2.1.0
+bcrypt==4.0.1
+passlib[bcrypt]
+pyjwt
+python-jose[cryptography]==3.3.0
+apscheduler==3.10.4
+httpx==0.28.1
+apscheduler
+croniter
